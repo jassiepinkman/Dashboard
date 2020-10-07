@@ -1,0 +1,45 @@
+.first-column{
+    list-style-type: none;
+    color: black;
+    background-color:#e8e4e1;
+    width: 25%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.first-column > img{
+    width: 120px;
+}
+
+.pie{
+    display: flex;
+    margin-bottom: 0;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.first-column > button{
+    color: #d4893d;
+    font-weight: 1000;
+    border : 3px solid #d4893d
+}
+
+.second-column{
+    list-style-type: none;
+    color: black;
+    background-color:#e8e4e1;
+    width: 25%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.second-column > button{
+    color: #d4893d;
+    font-weight: 1000;
+    border : 3px solid #d4893d;
+    margin-right: 6px;
+}
+
+.progress-bar{
+    width: 30%;
+}
