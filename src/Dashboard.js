@@ -10,39 +10,75 @@ const Dashboard = () => {
 
     const renderFirstColumn = (data, index) => {
         return(
-            <div>
-                <ul key={index} className="first-column">
+            <div className="main-data">
+            <div className="column">
+                <table key={index}>
+                    <tr>
                     <img src="https://getvectorlogo.com/wp-content/uploads/2020/02/ishares-vector-logo.png" alt=""/>
-                    <li>Quantity {data.quantity}</li>
-                    <li>Avg. Cost {data.avg_cost}</li>
-                    <li>Invested Amt {data.invested_amount}</li>
-                </ul>
+                    </tr>
+                    <tr>
+                    <td>Quantity</td>
+                    <td><b>{data.quantity}</b></td>
+                    </tr>
+                    <tr>
+                    <td>Avg. Cost</td>
+                    <td><b>{data.avg_cost}</b></td>
+                    </tr>
+                    <tr>
+                    <td>Invested Amt</td>
+                    <td><b>{data.invested_amount}</b></td>
+                    </tr>
+                </table>
             </div>
+            <div className="column">
+             <table key={index}>
+                 <tr>
+                 <td>Market Value</td>
+                 <td><b>{data.unrealized_PL}</b></td>
+                 </tr>
+                 <tr>
+                 <td>% of portfolio value</td>
+                 <td><b>{data.return}</b></td>
+                 </tr>
+                 <ProgressBar animated variant="success" now={60}/>
+             </table>
+            </div>
+             <div className="column">
+             <table key={index}>
+                 <tr>
+                 <td>Unrealized P/L</td>
+                 <td><b>{data.unrealized_PL}</b></td>
+                 <Button variant="outlined" style={myStyle}>BUY</Button>
+                 </tr>
+                 <tr>
+                 <td>% Return</td>
+                 <td><b>{data.return}</b></td>
+                 <Button variant="outlined" style={myStyle}>SELL</Button>
+                 </tr>
+                 <ProgressBar animated variant="danger" now={30}/>
+             </table>
+         </div>
+         </div>
         )
-    }
+    };
 
-    const renderSecondColumn = (data, index) => {
-        return(
-            <div>
-                <ul key={index} className="second-column">
-                    <li>Unrealized P/L {data.unrealized_PL}</li>
-                    <li>% Return {data.return}</li>
-                    <Button variant="outlined">BUY</Button>
-                    <Button variant="outlined">SELL</Button>
-                </ul>
-            </div>
-        )
+    const myStyle = {
+        color: "#d4893d",
+        fontWeight: "bold",
+        border : "3px",
+        border : "solid", 
+        borderColor : "#d4893d",
+        background : "white",
+        width : "10px"
     }
 
     return (
         <div className="dashboard">
+            <div>
             {json.map(renderFirstColumn)}
-            {json.map(renderSecondColumn)} 
             {json.map(item => item.return)} 
-            <div className="progress-bar">
-            <ProgressBar snimated variant="success" now={60} />
-            <ProgressBar animated variant="danger" now={30} />
             </div>
+            <div>
             <div className="pie">
             <h1>Portfolio</h1>
             <PieChart
@@ -55,8 +91,9 @@ const Dashboard = () => {
                 lineWidth={20}   
             />
             </div>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Dashboard
