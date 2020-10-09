@@ -6,9 +6,8 @@ import { Button } from '@material-ui/core';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
 const Dashboard = () => {
-    // const [data, setData] = useState([]);
 
-    const renderFirstColumn = (data, index) => {
+    const renderColumns = (data, index) => {
         return(
             <div className="main-data">
             <div className="column">
@@ -33,7 +32,7 @@ const Dashboard = () => {
             <div className="column">
              <table key={index}>
                  <tr>
-                 <td>Market Value</td>
+                 <td><b>Market Value</b></td>
                  <td><b>{data.unrealized_PL}</b></td>
                  </tr>
                  <tr>
@@ -42,22 +41,30 @@ const Dashboard = () => {
                  </tr>
                  <ProgressBar animated variant="success" now={60}/>
              </table>
-            </div>
+             </div>
              <div className="column">
              <table key={index}>
                  <tr>
-                 <td>Unrealized P/L</td>
+                 <td><b>Unrealized P/L</b></td>
                  <td><b>{data.unrealized_PL}</b></td>
-                 <Button variant="outlined" style={myStyle}>BUY</Button>
                  </tr>
                  <tr>
                  <td>% Return</td>
                  <td><b>{data.return}</b></td>
-                 <Button variant="outlined" style={myStyle}>SELL</Button>
                  </tr>
                  <ProgressBar animated variant="danger" now={30}/>
              </table>
-         </div>
+             </div>
+             <div className="column-button">
+             <table key={index}>
+                 <tr>
+                 <td><Button variant="outlined" style={myStyle}>BUY</Button></td>
+                 </tr>
+                 <tr>
+                 <td><Button variant="outlined" style={myStyle}>SELL</Button></td>
+                 </tr>
+             </table>
+             </div>
          </div>
         )
     };
@@ -69,28 +76,19 @@ const Dashboard = () => {
         border : "solid", 
         borderColor : "#d4893d",
         background : "white",
-        width : "10px"
+        width : "10px",
+        alignItems : "right" 
     }
 
     return (
         <div className="dashboard">
             <div>
-            {json.map(renderFirstColumn)}
-            {json.map(item => item.return)} 
+                {json.map(renderColumns)}
             </div>
             <div>
-            <div className="pie">
-            <h1>Portfolio</h1>
-            <PieChart
-               center={[10, 20]}
-                data={[
-                    { value: 10, color: '#6e5a21', label : 'ETFs' },
-                    { value: 20, color: '#34abeb', label : 'Mutual Funds' },
-                ]}
-                radius={10}     
-                lineWidth={20}   
-            />
-            </div>
+                <div className="pie">
+                <h1>Portfolio</h1>
+                </div>
             </div>
         </div>
     );
